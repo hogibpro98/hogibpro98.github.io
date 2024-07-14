@@ -1,91 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Social links profile</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #141414;
-    }
-    .container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 610px;
-        width: 310px;
-        background: #1f1f1f;
-        border-radius: 10px;
-        text-align: center;
-        padding: 40px;
-        font-family: sans-serif;
-    }
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-    }
-    .color-white {
-      color: #ffffff;
-    }
-    .color-green {
-      color: #c4f82a;
-    }
-    .text-bold {
-      font-weight: 700;
-    }
-    h4 {
-      font-size: 22px;
-      margin-bottom: 16px;
-    }
-    .links {
-      height: 45px;
-      margin: 15px 0;
-      background: #333333;
-      border-radius: 10px;
-      align-content: center;
-      color: #ffffff;
-    }
-    .links:hover {
-      background: #c4f82a;
-      color: #333333;
-    }
-    .mb-30 {
-      margin-bottom: 30px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listening Practice Through Dictation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css"></link>
 </head>
+
 <body>
-  <div class="container">
-    <!-- infos -->
-  <img src="./assets/images/avatar-jessica.jpeg" alt="">
-    <h4 class="color-white text-bold">Jessica Randall</h4>
-    <p class="color-green text-bold mb-30">London, United Kingdom</p>
-    <p class="color-white">"Front-end developer and avid reader."</p>
-    <!-- group link -->
-    <div class="links text-bold">
-      GitHub
-    </div>
-    <div class="links text-bold">
-      Frontend Mentor
-    </div>
-    <div class="links text-bold">
-      LinkedIn
-    </div>
-    <div class="links text-bold">
-      Twitter
-    </div>
-    <div class="links text-bold">
-      Instagram
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <!-- part 1 -->
+        <div class="row-title" data-target="#main-content-1">
+          <h5>Listening Practice Through Dictation 1</h5>
+          <i class="fas fa-chevron-down toggle-icon" id="main-icon"></i>
+        </div>
+
+        <div id="main-content-2" class="container-fluid main-content mb-2">
+        </div>
+
+        <div class="row-title">
+          <h5>MP3: </h5>
+          <div class="checkbox-list p-2 checkbox-list-1"></div>
+          <button id="playButton1" class="btn btn-primary btn-circle">Play</button>
+          <button id="stopButton1" class="btn btn-primary btn-circle">Stop</button>
+          <button id="playAllButton1" class="btn btn-primary btn-circle">All</button>
+        </div>
+        <!-- part 2 -->
+        <div class="row-title" data-target="#main-content-2">
+          <h5>Listening Practice Through Dictation 2</h5>
+          <i class="fas fa-chevron-down toggle-icon" id="main-icon"></i>
+        </div>
+
+        <div id="main-content-2" class="container-fluid main-content mb-2">
+        </div>
+
+        <div class="row-title">
+          <h5>MP3: </h5>
+          <div class="checkbox-list p-2 checkbox-list-2"></div>
+          <button id="playButton2" class="btn btn-primary btn-circle">Play</button>
+          <button id="stopButton2" class="btn btn-primary btn-circle">Stop</button>
+          <button id="playAllButton2" class="btn btn-primary btn-circle">All</button>
+        </div>
+        <!-- part 3 -->
+        <div class="row-title" data-target="#main-content-3">
+          <h5>Listening Practice Through Dictation 3</h5>
+          <i class="fas fa-chevron-down toggle-icon" id="main-icon"></i>
+        </div>
+
+        <div id="main-content-3" class="container-fluid main-content mb-2">
+        </div>
+
+        <div class="row-title">
+          <h5>MP3: </h5>
+          <div class="checkbox-list p-2 checkbox-list-3"></div>
+          <button id="playButton3" class="btn btn-primary btn-circle">Play</button>
+          <button id="stopButton3" class="btn btn-primary btn-circle">Stop</button>
+          <button id="playAllButton3" class="btn btn-primary btn-circle">All</button>
+        </div>
+
+        <!-- part 4 -->
+        <div class="row-title" data-target="#main-content-4">
+          <h5>Listening Practice Through Dictation 4</h5>
+          <i class="fas fa-chevron-down toggle-icon" id="main-icon"></i>
+        </div>
+
+        <div id="main-content-4" class="container-fluid main-content mb-2">
+        </div>
+
+        <div class="row-title">
+          <h5>MP3: </h5>
+          <div class="checkbox-list p-2 checkbox-list-4"></div>
+          <button id="playButton4" class="btn btn-primary btn-circle">Play</button>
+          <button id="stopButton4" class="btn btn-primary btn-circle">Stop</button>
+          <button id="playAllButton4" class="btn btn-primary btn-circle">All</button>
+        </div>
+
+      </div>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script src="./js/contentArray3.js"></script>
+  <script src="./js/main.js"></script>
 </body>
+
 </html>
