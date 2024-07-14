@@ -1315,7 +1315,7 @@ const contentArray3 = [
   },
   {
     id: "p3-unit-40",
-    title: "Unit 39 The Exchange Rate",
+    title: "Unit 40 The First Nations",
     text: `
     <p>The First Nations are the people who lived
     in North America before Europeans migrated
