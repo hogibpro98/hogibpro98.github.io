@@ -61,7 +61,20 @@ document.addEventListener("DOMContentLoaded", function () {
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close""></button>
                     </div>
                     <div class="modal-body">
-                      <textarea name="" id=""></textarea>
+                      <nav>
+                        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                          <button class="nav-link active" id="nav-home-tab${content.id}" data-bs-toggle="tab" data-bs-target="#nav-home${content.id}" type="button" role="tab" aria-controls="nav-home${content.id}" aria-selected="true">Script</button>
+                          <button class="nav-link" id="nav-profile-tab${content.id}" data-bs-toggle="tab" data-bs-target="#nav-profile${content.id}" type="button" role="tab" aria-controls="nav-profile${content.id}" aria-selected="false">Note</button>
+                        </div>
+                      </nav>
+                      <div class="tab-content p-3 border bg-light" id="nav-tabContent">
+                        <div class="tab-pane fade active show" id="nav-home${content.id}" role="tabpanel" aria-labelledby="nav-home-tab${content.id}">
+                          <p>${content.text}</p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile${content.id}" role="tabpanel" aria-labelledby="nav-profile-tab${content.id}">
+                          <textarea name="" id="textarea-${content.id}"></textarea>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
