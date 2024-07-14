@@ -7,11 +7,14 @@
   <title>Listening Practice Through Dictation</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="./css/main.css"></link>
+  <link rel="stylesheet" href="./css/AudioPlayer.css"></link>
 </head>
 
 <body>
   <div class="container-fluid">
+    <!-- <div id='player'></div> -->
     <div class="row">
       <div class="col-12">
         <!-- part 1 -->
@@ -20,17 +23,23 @@
           <i class="fas fa-chevron-down toggle-icon" id="main-icon"></i>
         </div>
 
-        <div id="main-content-2" class="container-fluid main-content mb-2">
+        <div id="main-content-1" class="container-fluid main-content mb-2">
         </div>
 
-        <div class="row-title">
-          <div class="row">
-            <h5>MP3: </h5>
-            <div class="checkbox-list p-2 checkbox-list-1"></div>
-            <button id="playButton1" class="btn btn-primary btn-circle">Play</button>
-            <button id="stopButton1" class="btn btn-primary btn-circle">Stop</button>
-            <button id="playAllButton1" class="btn btn-primary btn-circle">All</button>
-          </div>
+        <div class="row-title-mp3">
+          <button data-bs-toggle="modal" href="#exampleModalToggleP1" role="button" class="btn btn-primary w-100" onclick="playAudio('#player1')">Listening Practice</button>
+          <div class="modal fade" id="exampleModalToggleP1" aria-hidden="true" aria-labelledby="exampleModalToggleP1Label" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="stopAudio()"></button>
+                </div>
+                <div class="modal-body">
+                  <div id='player1'></div>
+                </div>
+              </div>
+            </div>
+          </div>  
         </div>
         <!-- part 2 -->
         <div class="row-title" data-target="#main-content-2">
@@ -41,14 +50,20 @@
         <div id="main-content-2" class="container-fluid main-content mb-2">
         </div>
 
-        <div class="row-title">
-          <div class="row">
-            <h5>MP3: </h5>
-            <div class="checkbox-list p-2 checkbox-list-2"></div>
-            <button id="playButton2" class="btn btn-primary btn-circle">Play</button>
-            <button id="stopButton2" class="btn btn-primary btn-circle">Stop</button>
-            <button id="playAllButton2" class="btn btn-primary btn-circle">All</button>
-          </div>
+        <div class="row-title-mp3">
+          <button data-bs-toggle="modal" href="#exampleModalToggleP2" role="button" class="btn btn-primary w-100" onclick="playAudio('#player2')">Listening Practice</button>
+          <div class="modal fade" id="exampleModalToggleP2" aria-hidden="true" aria-labelledby="exampleModalToggleP2Label" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="stopAudio()"></button>
+                </div>
+                <div class="modal-body">
+                  <div id='player2'></div>
+                </div>
+              </div>
+            </div>
+          </div>  
         </div>
         <!-- part 3 -->
         <div class="row-title" data-target="#main-content-3">
@@ -59,14 +74,25 @@
         <div id="main-content-3" class="container-fluid main-content mb-2">
         </div>
 
-        <div class="row-title">
+        <div class="row-title-mp3">
           <div class="row">
-            <h5>MP3: </h5>
+            <i class="text-danger"><b>(*) Choose files and click to Listening Practice to listen</b></i>
+            <i class="text-danger"><b>(*) Click to Listening Practice to listen all files</b></i>
             <div class="checkbox-list p-2 checkbox-list-3"></div>
-            <button id="playButton3" class="btn btn-primary btn-circle">Play</button>
-            <button id="stopButton3" class="btn btn-primary btn-circle">Stop</button>
-            <button id="playAllButton3" class="btn btn-primary btn-circle">All</button>
+            <button data-bs-toggle="modal" href="#exampleModalToggleP3" role="button" class="btn btn-primary w-100" onclick="playAudio('#player3')">Listening Practice</button>
           </div>
+          <div class="modal fade" id="exampleModalToggleP3" aria-hidden="true" aria-labelledby="exampleModalToggleP3Label" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="stopAudio()"></button>
+                </div>
+                <div class="modal-body">
+                  <div id='player3'></div>
+                </div>
+              </div>
+            </div>
+          </div>  
         </div>
 
         <!-- part 4 -->
@@ -78,14 +104,20 @@
         <div id="main-content-4" class="container-fluid main-content mb-2">
         </div>
 
-        <div class="row-title">
-          <div class="row">
-            <h5>MP3: </h5>
-            <div class="checkbox-list p-2 checkbox-list-4"></div>
-            <button id="playButton4" class="btn btn-primary btn-circle">Play</button>
-            <button id="stopButton4" class="btn btn-primary btn-circle">Stop</button>
-            <button id="playAllButton4" class="btn btn-primary btn-circle">All</button>
-          </div>
+        <div class="row-title-mp3">
+          <button data-bs-toggle="modal" href="#exampleModalToggleP4" role="button" class="btn btn-primary w-100" onclick="playAudio('#player4')">Listening Practice</button>
+          <div class="modal fade" id="exampleModalToggleP4" aria-hidden="true" aria-labelledby="exampleModalToggleP4Label" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="stopAudio()"></button>
+                </div>
+                <div class="modal-body">
+                  <div id='player4'></div>
+                </div>
+              </div>
+            </div>
+          </div>  
         </div>
 
       </div>
@@ -97,6 +129,34 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
   <script src="./js/contentArray3.js"></script>
   <script src="./js/main.js"></script>
+  <script src="./js/AudioPlayer.js"></script>
+  <script>
+    // test image for web notifications
+    var iconImage = null;
+
+    function playAudio (listMp3) {
+      const selectedCheckboxes3 = document.querySelectorAll(
+        ".checkbox-item3 input:checked"
+      );
+
+      let audioFiles = [];
+      audioFiles = Array.from(selectedCheckboxes3).map((item) => {console.log(item)
+          return {'icon': iconImage, 'title': item.value.split('cutinhere')[1] ?? 'no title', 'file': item.value.split('cutinhere')[0] ?? 'no title'};
+        });  
+
+      AP.init({
+        container: listMp3,
+        volume   : 1,
+        autoPlay : true,
+        notification: false,
+        playList: audioFiles.length ? audioFiles : listMp3Part3 // listMp3Part3 from contentArray3.js
+    });
+    }
+    function stopAudio() {
+      AP.destroy();
+    }
+  </script>
+</script>
 </body>
 
 </html>

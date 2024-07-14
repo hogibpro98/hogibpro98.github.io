@@ -2,7 +2,6 @@ let currentAudio = null;
 
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".row-title").forEach(function (title) {
-    // title.classList.add("is-show");
     title.addEventListener("click", function () {
       const target = document.querySelector(title.getAttribute("data-target"));
       const icon = title.querySelector(".toggle-icon");
@@ -15,11 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
       icon.classList.toggle("fa-chevron-down");
       icon.classList.toggle("fa-chevron-up");
 
-      // document.querySelectorAll('[data-target^="#main-content-"]').forEach(function (item) {
-      //   if (item.getAttribute("data-target") !== title.getAttribute("data-target")) {
-      //     item.classList.add("is-not-show");
-      //   }
-      // });
+      title.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     });
   });
   // General function
@@ -94,134 +92,38 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   // Generate 40 checkboxes
-  function generateCheckboxes(checkboxName, className, pathName) {
-    for (let i = 1; i <= 40; i++) {
+  function generateCheckboxes(checkboxName, className) {
+    contentArray3.forEach((item) => {
       const checkboxItem = document.createElement("div");
       checkboxItem.classList.add(className);
 
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
-      checkbox.id = `mp3-${i}`;
-      checkbox.value = pathName + `${i}.mp3`;
+      checkbox.id = `${item.id}`;
+      checkbox.value = `${item.audioSrc}cutinhere${item.title}`;
 
       const label = document.createElement("label");
-      label.htmlFor = `mp3-${i}`;
-      label.textContent = `Unit-${i}`;
+      label.htmlFor = `${item.id}`;
+      label.textContent = `${item.title}`;
 
       checkboxItem.appendChild(checkbox);
       checkboxItem.appendChild(label);
       checkboxName.appendChild(checkboxItem);
-    }
+    })
   }
-  // play audio files sequentially
-  function playAudioFilesSequentially(audioFiles) {
-    let currentIndex = 0;
+  // // part 1
+  // // main content
+  // const mainContentContainer1 = document.getElementById("main-content-1");
+  // generalFunction(contentArray3, mainContentContainer1);
+  // const checkboxList1 = document.querySelector(".checkbox-list-1");
+  // // generate 40 checkboxes
+  // generateCheckboxes(checkboxList1, "checkbox-item1", "./libraries/lptd3/");
 
-    function playNext() {
-      if (currentIndex < audioFiles.length) {
-        currentAudio = new Audio(audioFiles[currentIndex]);
-        currentAudio.play();
-        currentAudio.onended = () => {
-          currentIndex++;
-          playNext();
-        };
-      }
-    }
-
-    playNext();
-  }
-  function openPdfViewerModal(pdfPath) {
-    const pdfViewerModal = new bootstrap.Modal(
-      document.getElementById("pdfViewerModal"),
-      {
-        keyboard: false,
-        backdrop: "static",
-      }
-    );
-
-    PDFJS.getDocument(pdfPath)
-      .promise.then((pdf) => {
-        const totalPages = pdf.numPages;
-        const pdfViewer = document.getElementById("pdfViewer");
-        pdfViewer.innerHTML = "";
-
-        for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
-          pdf.getPage(pageNumber).then((page) => {
-            const viewport = page.getViewport({ scale: 1.5 });
-            const canvas = document.createElement("canvas");
-            const context = canvas.getContext("2d");
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            const renderContext = {
-              canvasContext: context,
-              viewport: viewport,
-            };
-
-            page.render(renderContext).promise.then(() => {
-              pdfViewer.appendChild(canvas);
-            });
-          });
-        }
-
-        pdfViewerModal.show();
-      })
-      .catch((error) => {
-        console.error("Error loading PDF:", error);
-        alert("Failed to load PDF. Please try again later.");
-      });
-  }
   // part 3
   // main content
   const mainContentContainer3 = document.getElementById("main-content-3");
   generalFunction(contentArray3, mainContentContainer3);
   const checkboxList3 = document.querySelector(".checkbox-list-3");
   // generate 40 checkboxes
-  generateCheckboxes(checkboxList3, "checkbox-item3", "./libraries/lptd3/");
-  // play audio files
-  document.getElementById("playButton3").addEventListener("click", () => {
-    const selectedCheckboxes3 = document.querySelectorAll(
-      ".checkbox-item3 input:checked"
-    );
-
-    if (selectedCheckboxes3.length === 0) {
-      alert("Please select at least one MP3 file to play.");
-      return;
-    }
-
-    let audioFiles = [];
-    audioFiles = Array.from(selectedCheckboxes3).map(
-      (checkbox) => checkbox.value
-    );
-
-    // Stop current audio if playing
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
-    }
-
-    playAudioFilesSequentially(audioFiles);
-  });
-
-  document.getElementById("playAllButton3").addEventListener("click", () => {
-    const allCheckboxes = document.querySelectorAll(".checkbox-item3 input");
-
-    let audioFiles = [];
-    audioFiles = Array.from(allCheckboxes).map((checkbox) => checkbox.value);
-
-    // Stop current audio if playing
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
-    }
-
-    playAudioFilesSequentially(audioFiles);
-  });
-
-  document.getElementById("stopButton3").addEventListener("click", () => {
-    // Stop current audio if playing
-    if (currentAudio) {
-      currentAudio.pause();
-    }
-  });
+  generateCheckboxes(checkboxList3, "checkbox-item3");
 });

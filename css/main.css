@@ -35,15 +35,18 @@ p {
   color: #007bff;
 }
 
+.row-title, .row-title-mp3 {
+  cursor: pointer;
+  background-color: #f8f9fa;
+  padding: 4px 10px 4px 10px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 5px;
+}
+
 .row-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
-  background-color: #f8f9fa;
-  padding: 0px 10px;
-  border: 1px solid #e9ecef;
-  margin-bottom: 5px;
 }
 
 .main-content-text {
@@ -58,9 +61,13 @@ p {
 }
 
 .checkbox-list {
-  display: flex;
-  flex-wrap: wrap;
+  font-family: Arial, sans-serif;
+  display: grid;
   gap: 10px;
+  background: #f1f1f1;
+  padding: 20px 20px !important;
+  max-height: 64vh;
+  overflow: scroll;
 }
 
 .checkbox-item {
@@ -99,4 +106,18 @@ textarea {
 h5 {
   font-weight: bold;
   font-size: 18px;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+div[class^="checkbox-item"] {
+  margin: 0 5px;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+i {
+  font-size: 12px;
 }

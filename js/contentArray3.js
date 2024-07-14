@@ -1346,3 +1346,13 @@ const contentArray3 = [
     audioSrc: "./libraries/lptd3/40.mp3",
   },
 ];
+
+var iconImage = null;
+
+function generalListMp3() {
+  return contentArray3.map((item) => {
+    return {'icon': iconImage, 'title': item.title, 'file': item.audioSrc};
+  });
+}
+
+const listMp3Part3 = generalListMp3();
