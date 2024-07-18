@@ -107,8 +107,14 @@ nav ul li ul li a {
 
 @media only screen and (max-width: 800px) {
     #navbar-toggle {
-        top: 30px !important;
+        top: 10px !important;
     }
+
+    .navigation {
+        position: absolute;
+        height: 40px;
+    }
+
     .nav-mobile {
         display: block;
     }
@@ -139,12 +145,18 @@ nav ul li ul li a {
     .navbar-dropdown {
         position: static;
     }
+
+    .wrapper {
+        width: 90%;
+        padding: 4px;
+    }
 }
 
 @media screen and (min-width:800px) {
     .nav-list {
         display: block !important;
     }
+
     .navigation {
         height: 40px;
     }
@@ -201,6 +213,7 @@ nav ul li ul li a {
     #navbar-toggle {
         top: 30px !important;
     }
+
     .navigation {
         height: 30px !important;
     }
