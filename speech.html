@@ -56,32 +56,10 @@
       </div>
     </section>
     <div class="wrapper">
-        <div class="top-bar">
-          <span class="material-icons row-title" data-target="#headset">headset</span> | 
-          <span class="material-icons row-title" data-target="#history_edu">history_edu</span> | 
-          <span id="speechEvent" class="material-icons row-title" data-target="#speech" onclick="copyText()">mic</span> | 
-          <span class="material-icons row-title" data-target="#g_translate">g_translate</span>
-        </div>
-        <!-- headset -->
-        <div id="headset" class="container-fluid main-content mb-2" style="display: none;">
-          <div class="checkbox-list">
-            <!-- js ren here -->
-          </div>
-        </div>
-        <!-- history_edu -->
-        <div id="history_edu" class="container-fluid main-content mb-2" style="display: none;">
-          <textarea name="" id=""></textarea>
-        </div>
-        <!-- translate -->
-        <div id="g_translate" class="container-fluid main-content mb-2" style="display: none;">
-          <div>
-            <p style="color: whitesmoke;">Developing</p>
-        </div>
-        </div>
-        <!-- speech -->
-        <div id="speech" class="container-fluid main-content mb-2" style="display: none;">
+        <div id="speech" class="speech-sound">
           <div class="speech-container">
-            <textarea hidden id="textInput" placeholder="Enter text here" value=""></textarea>
+            <h6 style="color: whitesmoke;font-weight: bold;"><span style="color: red;">(*)</span> <i>Copy a script to input click start to speaking practice</i></h6>
+            <textarea id="textInput" placeholder="Enter text here" value=""></textarea>
             <div class="speech-bubble">
               <p id="displayText"></p>
               <p id="speechOutput"></p>
@@ -100,51 +78,12 @@
             </div>
           </div>
         </div>
-
-        <div class="img-area" style="display: none;">
-            <img src="" alt="">
-        </div>
-        <div class="song-details">
-            <p class="name"></p>
-            <p id="textToCopy" class="artist"></p>
-        </div>
-        <div class="progress-area">
-            <div class="progress-bar">
-                <audio id="main-audio" src=""></audio>
-            </div>
-            <div class="song-timer">
-                <span class="current-time">0:00</span>
-                <span class="max-duration">0:00</span>
-            </div>
-        </div>
-        <div class="controls">
-            <i id="repeat-plist" class="material-icons" title="Playlist looped">repeat</i>
-            <i id="prev" class="material-icons">skip_previous</i>
-            <div class="play-pause">
-                <i class="material-icons play">play_arrow</i>
-            </div>
-            <i id="next" class="material-icons">skip_next</i>
-            <i id="more-music" class="material-icons">queue_music</i>
-        </div>
-        <div class="music-list">
-            <div class="header">
-                <div class="row">
-                    <i class="list material-icons">queue_music</i>
-                    <span>Music list</span>
-                </div>
-                <i id="close" class="material-icons">close</i>
-            </div>
-            <ul>
-                <!-- here li list are coming from js -->
-            </ul>
-        </div>
     </div>
 
     <script src="src/js/popper.min.js"></script>
     <script src="src/js/bootstrap.min.js"></script>
     <script src="src/js/all.min.js"></script>
     <script src="src/js/music.js"></script>
-    <script src="src/js/index.js"></script>
     <script src="src/js/particles.js"></script>
     <script src="src/js/nav.js"></script>
     <script src="src/js/speech.js"></script>
