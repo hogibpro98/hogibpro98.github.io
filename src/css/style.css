@@ -21,13 +21,12 @@ body {
 #particles-js {
     position: absolute;
     width: 100%;
-    height: 100%;
+    min-height: 120%;
     background-color: #111218;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
     top: 0;
-    left: 0;
 }
 
 .wrapper {
@@ -386,8 +385,8 @@ textarea {
 }
 
 .disabled {
-    pointer-events: none;
-    opacity: 0.6;
+    pointer-events:none; 
+    opacity:0.6;
 }
 
 .previewBox {
@@ -441,63 +440,14 @@ button.copy-btn {
         justify-content: center;
         height: 100vh;
     }
-
     .previewBox {
         top: 30px;
         left: 40px;
         font-size: 18px;
     }
-
     .previewBox {
         top: 30px;
         left: 40px;
         font-size: 18px;
-    }
-
-    .wrapper {
-        padding: 6px 5px;
-        margin-top: 30px;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .wrapper {
-        width: 90%;
-        padding: 4px;
-        height: 86vh;
-        margin-top: 40px;
-    }
-
-    .navigation {
-        position: absolute;
-        height: 30px;
-    }
-
-    .song-details .artist {
-        padding: 0;
-    }
-
-    .previewBox {
-        top: 20px;
-    }
-
-    .top-bar span {
-        font-size: 20px;
-        color: whitesmoke;
-    }
-
-    .controls .play-pause {
-        height: 40px;
-        width: 40px;
-    }
-
-    .controls {
-        margin: 8px 0 4px 0;
-    }
-
-    .song-details {
-        max-height: 60vh;
-        margin: 10px 0;
-        overflow-y: scroll;
     }
 }
