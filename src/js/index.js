@@ -82,6 +82,8 @@ function showAllMusic(isCustom = false) {
     "listening-practice-through-dictation-2.html": allMusic2,
     "listening-practice-through-dictation-3.html#!": allMusic3,
     "listening-practice-through-dictation-3.html": allMusic3,
+    "listening-practice-through-dictation-4.html#!": allMusic4,
+    "listening-practice-through-dictation-4.html": allMusic4,
   };
 
   if (!isCustom) {
