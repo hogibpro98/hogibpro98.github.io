@@ -85,7 +85,7 @@ function showAllMusic(isCustom = false) {
   };
 
   if (!isCustom) {
-    return actions[result];
+    return actions[result] ?? allMusic3;
   }
 
   return playAudio();
