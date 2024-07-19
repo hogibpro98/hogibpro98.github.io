@@ -54,7 +54,7 @@ const wrapper = document.querySelector(".wrapper"),
 
 let allMusicFull = showAllMusic();
 let allMusic = showAllMusic(true);
-let musicIndex = 1; //Math.floor((Math.random() * allMusic.length) + 1); with random
+let musicIndex = 1;//Math.floor((Math.random() * allMusic.length) + 1);// with random
 isMusicPaused = true;
 
 function generateCheckboxes(checkboxName, className) {
@@ -79,8 +79,8 @@ function generateCheckboxes(checkboxName, className) {
 
 const checkboxList = document.querySelector("#headset .checkbox-list");
 checkboxList.addEventListener("click", (e) => {
-  mainAudio.src = `${allMusic[0].audioSrc}`;
   pauseMusic();
+  loadMusic(1);
 });
 // generate 40 checkboxes
 generateCheckboxes(checkboxList, "checkbox-item");
@@ -122,9 +122,13 @@ function loadMusic(indexNumb) {
   mainAudio.src = `${allMusic[indexNumb - 1].audioSrc}`;
 }
 
+function resetTitleText() {
+  musicName.innerText = allMusic[0].title;
+  musicArtist.innerText = allMusic[0].text;
+}
+
 function playMusic() {
   allMusic = playAudio();
-  loadMusic(musicIndex);
   wrapper.classList.add("paused");
   playPauseBtn.querySelector("i").innerText = "pause";
   mainAudio.play();
@@ -132,7 +136,6 @@ function playMusic() {
 
 function pauseMusic() {
   allMusic = playAudio();
-  loadMusic(musicIndex);
   wrapper.classList.remove("paused");
   playPauseBtn.querySelector("i").innerText = "play_arrow";
   mainAudio.pause();
