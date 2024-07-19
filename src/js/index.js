@@ -4,22 +4,39 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".row-title").forEach(function (title) {
     title.addEventListener("click", function () {
       zIndex++;
-      const target = document.querySelector(title.getAttribute("data-target"));
+      let  target = document.querySelector(title.getAttribute("data-target"));
+      let idName = '#'+target.getAttribute("id");
       target.style.display =
-        target.style.display === "none" || target.style.display === ""
+
+      target.style.display === "none" || target.style.display === ""
           ? "block"
           : "none";
+
       target.style.zIndex =
         target.style.display === "none" || target.style.display === ""
           ? zIndex
           : 0;
+
       title.style.color  =
         target.style.display === "none" || target.style.display === ""
           ? 'whitesmoke'
-          : '#ff0000';   
+          : '#ff0000';
+
+      resetTabState(idName);
     });
   });
 });
+
+function resetTabState(idName) {
+  document.querySelectorAll(".row-title").forEach(function (title) {
+    let  target = document.querySelector(title.getAttribute("data-target"));
+    if (idName != title.getAttribute("data-target")) {
+      target.style.display = "none";
+      target.style.zIndex = 0;
+      title.style.color  = 'whitesmoke';
+    }   
+  });
+}
 
 const wrapper = document.querySelector(".wrapper"),
   musicImg = wrapper.querySelector(".img-area img"),
@@ -107,6 +124,7 @@ function loadMusic(indexNumb) {
 
 function playMusic() {
   allMusic = playAudio();
+  loadMusic(musicIndex);
   wrapper.classList.add("paused");
   playPauseBtn.querySelector("i").innerText = "pause";
   mainAudio.play();
@@ -114,12 +132,14 @@ function playMusic() {
 
 function pauseMusic() {
   allMusic = playAudio();
+  loadMusic(musicIndex);
   wrapper.classList.remove("paused");
   playPauseBtn.querySelector("i").innerText = "play_arrow";
   mainAudio.pause();
 }
 
 function prevMusic() {
+  resetTabState('playingSong');
   musicIndex--;
   musicIndex < 1 ? (musicIndex = allMusic.length) : (musicIndex = musicIndex);
   loadMusic(musicIndex);
@@ -128,6 +148,7 @@ function prevMusic() {
 }
 
 function nextMusic() {
+  resetTabState('playingSong');
   musicIndex++;
   musicIndex > allMusic.length ? (musicIndex = 1) : (musicIndex = musicIndex);
   loadMusic(musicIndex);
@@ -314,6 +335,7 @@ function playingSong() {
 }
 
 function clicked(element) {
+  resetTabState('playingSong');
   let getLiIndex = element.getAttribute("li-index");
   musicIndex = getLiIndex;
   loadMusic(musicIndex);

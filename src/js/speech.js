@@ -42,8 +42,24 @@ textInput.addEventListener('input', () => {
     keepBtn.disabled = false;
 });
 
-function splitIntoSentences(text) {
-    return text.match(/[^\.!\?]+[\.!\?]+/g) || [];
+function splitIntoSentences(sentences) {
+    const sentinel = '\0';
+
+    sentences = sentences.replace(/Mr\./g, `Mr${sentinel}`)
+                         .replace(/Mrs\./g, `Mrs${sentinel}`)
+                         .replace(/Ms\./g, `Ms${sentinel}`)
+                         .replace(/Dr\./g, `Dr${sentinel}`)
+                         .replace(/Prof\./g, `Prof${sentinel}`)
+                         .replace(/St\./g, `St${sentinel}`);
+
+    const parts = sentences.split(/(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\s/g);
+
+    return parts.map(s => s.replace(new RegExp(`Mr${sentinel}`, 'g'), 'Mr.')
+                           .replace(new RegExp(`Mrs${sentinel}`, 'g'), 'Mrs.')
+                           .replace(new RegExp(`Ms${sentinel}`, 'g'), 'Ms.')
+                           .replace(new RegExp(`Dr${sentinel}`, 'g'), 'Dr.')
+                           .replace(new RegExp(`Prof${sentinel}`, 'g'), 'Prof.')
+                           .replace(new RegExp(`St${sentinel}`, 'g'), 'St.'));
 }
 
 function removeSpeakerLabels(sentences) {
@@ -53,7 +69,7 @@ function removeSpeakerLabels(sentences) {
 }
 
 function normalizeText(text) {
-    return text.toLowerCase().replace(/[.,?!:"']/g, '').replace(/\s+/g, ' ').trim();
+    return text.toLowerCase().replace(/[.,?!:"'’]/g, '').replace(/\s+/g, ' ').trim();
 }
 
 function updateDisplayText() {
