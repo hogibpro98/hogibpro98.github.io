@@ -12,21 +12,26 @@
 }
 
 body {
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    justify-content: center; */
+    height: 100vh;
+    background-image: url("../img/bg.png");
+    background-color: #111218;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #particles-js {
     position: absolute;
     width: 100%;
-    min-height: 120%;
+    height: 100%;
     background-color: #111218;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
     top: 0;
+    left: 0;
 }
 
 .wrapper {
@@ -39,7 +44,7 @@ body {
     backdrop-filter: blur(10px);
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    margin-top: 55px;
+    margin: 70px auto 0 auto;
 }
 
 .top-bar {
