@@ -2,152 +2,201 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="src/css/bootstrap.min.css" rel="stylesheet">
-    <link href="src/css/all.min.css" rel="stylesheet">
-    <script src="src/js/particles.min.js"></script>
-    <script src="src/js/jquery-1.10.1.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="src/css/style.css">
-    <link rel="stylesheet" href="src/css/nav.css">
-    <link rel="stylesheet" href="src/css/speech.css">
-    <title>LPTDictation V2.0</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="src/css/bootstrap.min.css" rel="stylesheet">
+  <link href="src/css/all.min.css" rel="stylesheet">
+  <script src="src/js/particles.min.js"></script>
+  <script src="src/js/jquery-1.10.1.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="src/css/nav.css">
+  <link rel="stylesheet" href="src/css/speech.css">
+  <title>LPTDictation V2.0</title>
 </head>
 
 <body>
-    <div class="previewBox">LPTDictation V2.0</div>
-    <div id="particles-js"></div>
-    <section class="navigation">
-      <div class="nav-container">
-        <nav>
-          <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
-          <ul class="nav-list">
-            <li>
-              <a href="#!" title="Listening Practice Through Dictation">Select Courses</a>
-              <ul class="navbar-dropdown">
-                <li>
-                  <a href="listening-practice-through-dictation-1.html">Listening Practice Through Dictation 1</a>
-                </li>
-                <li>
-                  <a href="listening-practice-through-dictation-2.html">Listening Practice Through Dictation 2</a>
-                </li>
-                <li>
-                  <a href="index.html">Listening Practice Through Dictation 3</a>
-                </li>
-                <li>
-                  <a href="listening-practice-through-dictation-4.html">Listening Practice Through Dictation 4</a>
-                </li>
-                <li>
-                  <a href="speech.html">English speaking practice</a>
-                </li>
-                <li class="disabled">
-                  <a href="#!">Guide</a>
-                </li>
-                <li>
-                  <a href="version-1.html">Version 1</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </section>
-    <div class="wrapper">
-        <div class="top-bar">
-          <span class="material-icons row-title" data-target="#headset">headset</span> | 
-          <span class="material-icons row-title" data-target="#history_edu">history_edu</span> | 
-          <span id="speechEvent" class="material-icons row-title" data-target="#speech" onclick="copyText()">mic</span> | 
-          <span class="material-icons row-title" data-target="#g_translate">g_translate</span>
-        </div>
-        <!-- headset -->
-        <div id="headset" class="container-fluid main-content mb-2" style="display: none;">
-          <div class="checkbox-list">
-            <!-- js ren here -->
-          </div>
-        </div>
-        <!-- history_edu -->
-        <div id="history_edu" class="container-fluid main-content mb-2" style="display: none;">
-          <textarea name="" id=""></textarea>
-        </div>
-        <!-- translate -->
-        <div id="g_translate" class="container-fluid main-content mb-2" style="display: none;">
-          <div>
-            <p style="color: whitesmoke;">Developing</p>
-        </div>
-        </div>
-        <!-- speech -->
-        <div id="speech" class="container-fluid main-content mb-2" style="display: none;">
-          <div class="speech-container">
-            <textarea hidden id="textInput" placeholder="Enter text here" value=""></textarea>
-            <div class="speech-bubble">
-              <p id="displayText"></p>
-              <p id="speechOutput"></p>
-            </div>
-            <div class="footer-speech">
-              <button id="startStopBtn"><span>Start</span><span class="material-icons">
-                mic_external_on
-                </span></button>
-              <button id="keepBtn" disabled><span>Keep</span> <span class="material-icons">
-                skip_next
-              </span></button>
-              <select id="languageSelect">
-                  <option value="en-US">English (US)</option>
-                  <option value="en-GB">English (UK)</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="img-area" style="display: none;">
-            <img src="" alt="">
-        </div>
-        <div class="song-details">
-            <p class="name"></p>
-            <p id="textToCopy" class="artist"></p>
-        </div>
-        <div class="progress-area">
-            <div class="progress-bar">
-                <audio id="main-audio" src=""></audio>
-            </div>
-            <div class="song-timer">
-                <span class="current-time">0:00</span>
-                <span class="max-duration">0:00</span>
-            </div>
-        </div>
-        <div class="controls">
-            <i id="repeat-plist" class="material-icons" title="Playlist looped">repeat</i>
-            <i id="prev" class="material-icons">skip_previous</i>
-            <div class="play-pause">
-                <i class="material-icons play">play_arrow</i>
-            </div>
-            <i id="next" class="material-icons">skip_next</i>
-            <i id="more-music" class="material-icons">queue_music</i>
-        </div>
-        <div class="music-list">
-            <div class="header">
-                <div class="row">
-                    <i class="list material-icons">queue_music</i>
-                    <span>Music list</span>
-                </div>
-                <i id="close" class="material-icons">close</i>
-            </div>
-            <ul>
-                <!-- here li list are coming from js -->
+  <div class="previewBox">LPTDictation V2.0</div>
+  <div id="particles-js"></div>
+  <section class="navigation">
+    <div class="nav-container">
+      <nav>
+        <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
+        <ul class="nav-list">
+          <li>
+            <a href="#!" title="Listening Practice Through Dictation">Select Courses</a>
+            <ul class="navbar-dropdown">
+              <li>
+                <a href="listening-practice-through-dictation-1.html">Listening Practice Through Dictation 1</a>
+              </li>
+              <li>
+                <a href="listening-practice-through-dictation-2.html">Listening Practice Through Dictation 2</a>
+              </li>
+              <li>
+                <a href="index.html">Listening Practice Through Dictation 3</a>
+              </li>
+              <li>
+                <a href="listening-practice-through-dictation-4.html">Listening Practice Through Dictation 4</a>
+              </li>
+              <li>
+                <a href="speech.html">English speaking practice</a>
+              </li>
+              <li class="disabled">
+                <a href="#!">Guide</a>
+              </li>
+              <li>
+                <a href="version-1.html">Version 1</a>
+              </li>
             </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+  <div class="wrapper">
+    <div class="top-bar">
+      <span class="material-icons row-title" data-target="#headset">headset</span> |
+      <span class="material-icons row-title" data-target="#history_edu">history_edu</span> |
+      <span id="speechEvent" class="material-icons row-title" data-target="#speech" onclick="copyText()">mic</span> |
+      <span class="material-icons row-title" data-target="#g_translate">checklist</span>
+    </div>
+    <!-- headset -->
+    <div id="headset" class="container-fluid main-content mb-2" style="display: none;">
+      <div class="checkbox-list">
+        <!-- js ren here -->
+      </div>
+    </div>
+    <!-- history_edu -->
+    <div id="history_edu" class="container-fluid main-content mb-2" style="display: none;">
+      <textarea name="" id=""></textarea>
+    </div>
+    <!-- translate -->
+    <div id="g_translate" class="container-fluid main-content mb-2" style="display: none;">
+      <h5>Suggest</h5>
+      <table id="data-table-suggest">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>Listen</th>
+            <th>Read</th>
+            <th>Write</th>
+          </tr>
+        </thead>
+        <tbody id="table-body-suggest">
+          <tr>
+            <th>Listening Practice Through Dictation 1</th>
+            <th>100</th>
+            <th>30</th>
+            <th>5</th>
+          </tr>
+          <tr>
+            <th>Listening Practice Through Dictation 1</th>
+            <th>130</th>
+            <th>40</th>
+            <th>7</th>
+          </tr>
+          <tr>
+            <th>Listening Practice Through Dictation 1</th>
+            <th>150</th>
+            <th>50</th>
+            <th>8</th>
+          </tr>
+          <tr>
+            <th>Listening Practice Through Dictation 1</th>
+            <th>170</th>
+            <th>60</th>
+            <th>10</th>
+          </tr>
+        </tbody>
+      </table>
+      <h5>Checklist</h5>
+      <table id="data-table">
+        <thead>
+            <tr>
+                <th>Part</th>
+                <th>Listen</th>
+                <th>Read</th>
+                <th>Write</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Rows will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+      <button onclick="saveData()">Save</button>
+    </div>
+    <!-- speech -->
+    <div id="speech" class="container-fluid main-content mb-2" style="display: none;">
+      <div class="speech-container">
+        <textarea hidden id="textInput" placeholder="Enter text here" value=""></textarea>
+        <div class="speech-bubble">
+          <p id="displayText"></p>
+          <p id="speechOutput"></p>
         </div>
+        <div class="footer-speech">
+          <button id="startStopBtn"><span>Start</span><span class="material-icons">
+              mic_external_on
+            </span></button>
+          <button id="keepBtn" disabled><span>Keep</span> <span class="material-icons">
+              skip_next
+            </span></button>
+          <select id="languageSelect">
+            <option value="en-US">English (US)</option>
+            <option value="en-GB">English (UK)</option>
+          </select>
+        </div>
+      </div>
     </div>
 
-    <script src="src/js/popper.min.js"></script>
-    <script src="src/js/bootstrap.min.js"></script>
-    <script src="src/js/all.min.js"></script>
-    <script src="src/js/music.js"></script>
-    <script src="src/js/index.js"></script>
-    <script src="src/js/particles.js"></script>
-    <script src="src/js/nav.js"></script>
-    <script src="src/js/speech.js"></script>
+    <div class="img-area" style="display: none;">
+      <img src="" alt="">
+    </div>
+    <div class="song-details">
+      <p class="name"></p>
+      <p id="textToCopy" class="artist"></p>
+    </div>
+    <div class="progress-area">
+      <div class="progress-bar">
+        <audio id="main-audio" src=""></audio>
+      </div>
+      <div class="song-timer">
+        <span class="current-time">0:00</span>
+        <span class="max-duration">0:00</span>
+      </div>
+    </div>
+    <div class="controls">
+      <i id="repeat-plist" class="material-icons" title="Playlist looped">repeat</i>
+      <i id="prev" class="material-icons">skip_previous</i>
+      <div class="play-pause">
+        <i class="material-icons play">play_arrow</i>
+      </div>
+      <i id="next" class="material-icons">skip_next</i>
+      <i id="more-music" class="material-icons">queue_music</i>
+    </div>
+    <div class="music-list">
+      <div class="header">
+        <div class="row">
+          <i class="list material-icons">queue_music</i>
+          <span>Music list</span>
+        </div>
+        <i id="close" class="material-icons">close</i>
+      </div>
+      <ul>
+        <!-- here li list are coming from js -->
+      </ul>
+    </div>
+  </div>
+  <script src="src/js/popper.min.js"></script>
+  <script src="src/js/bootstrap.min.js"></script>
+  <script src="src/js/all.min.js"></script>
+  <script src="src/js/music.js"></script>
+  <script src="src/js/index.js"></script>
+  <script src="src/js/particles.js"></script>
+  <script src="src/js/nav.js"></script>
+  <script src="src/js/speech.js"></script>
+  <script src="src/js/note.js"></script>
 </body>
 
 </html>
