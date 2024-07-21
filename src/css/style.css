@@ -518,3 +518,8 @@ div#g_translate input {
 .part-header {
     cursor: pointer;
 }
+
+table#data-table {
+    max-width: 60%;
+    margin: 0 auto;
+}
