@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch tập Program 7: Upper/Lower 4x/Tuần (Chi tiết)</title>
+    <style>
+        /* image height 350px */
+        img {
+            max-width: 100%;
+            height: auto;
+            max-height: 350px; /* Set a maximum height */
+            display: block;
+            margin: 0 auto; /* Center the image */
+        }
+        /* Responsive design */
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top; /* Align content to top */
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .exercise-name {
+            font-weight: bold;
+        }
+        .image-placeholder {
+            font-style: italic;
+            color: #777;
+            font-size: 0.8em;
+            margin-top: 5px;
+            display: block;
+        }
+        /* Styles for timer */
+        .timer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the start */
+            gap: 5px; /* Space between elements */
+        }
+        .timer-button {
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .timer-display {
+            font-weight: bold;
+            font-size: 1.1em;
+            min-height: 1.2em; /* Reserve space */
+            color: #007bff; /* Blue color for timer */
+        }
+        .click-count-display {
+             font-size: 0.9em;
+             color: #555; /* Grey color for count */
+             min-height: 1em; /* Reserve space */
+        }
+        .timer-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* Styles for disabled row */
+        tr.row-disabled {
+            background-color: #e9e9e9 !important; /* Light grey, override nth-child */
+            color: #999; /* Grey text */
+            text-decoration: line-through; /* Strikethrough text */
+        }
+        tr.row-disabled img {
+             opacity: 0.4; /* Dim the image */
+        }
+        /* Ensure disabled buttons within the row also look appropriately disabled */
+        tr.row-disabled .timer-button {
+             cursor: not-allowed;
+             opacity: 0.5; /* Match general disabled look */
+             /* Button is already disabled by JS, this just reinforces style */
+        }
+        tr.row-disabled .timer-display,
+        tr.row-disabled .click-count-display {
+            color: #999; /* Match text color */
+            text-decoration: line-through; /* Ensure these get strikethrough too */
+        }
+
+        /* Adjust column widths */
+        th:first-child, td:first-child { width: 4%; text-align: center; vertical-align: middle;} /* Checkbox column */
+        th:nth-child(2), td:nth-child(2) { width: 23%; } /* Exercise name */
+        th:nth-child(3), td:nth-child(3) { width: 6%; }  /* Sets */
+        th:nth-child(4), td:nth-child(4) { width: 6%; }  /* Reps */
+        th:nth-child(5), td:nth-child(5) { width: 12%; } /* Rest timer */
+        /* Adjust others as needed */
+
+
+    </style>
+</head>
+<body>
+
+    <h1>Program 7: Upper/Lower Split 4x/Tuần (Intermediate/Advanced)</h1>
+    <p><strong>Mục tiêu:</strong> Xây dựng cơ bắp và sức mạnh</p>
+    <p><strong>Thời gian dự kiến:</strong> 60-90 phút/buổi</p>
+    <p><strong>Lịch tập:</strong> Thứ 3 (Upper 1), Thứ 4 (Lower 1), Thứ 7 (Upper 2), Chủ Nhật (Lower 2)</p>
+
+    <h2>Thứ 3: Upper Body 1</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>✓</th> <!-- Header for checkbox -->
+                <th>Bài tập (với mô tả hình ảnh)</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Nghỉ (phút)</th>
+                <th>RPE Set đầu</th>
+                <th>RPE Set cuối</th>
+                <th>Kỹ thuật set cuối</th>
+                <th>Bài tập thay thế 1</th>
+                <th>Bài tập thay thế 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Bench Press (Barbell)</span>
+                    <img src="images/lower_body_1/Bench Press.png" alt="Barbell Bench Press">
+                </td>
+                <td>3</td>
+                <td>6-8</td>
+                <td data-rest="3-5">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>6-7</td>
+                <td>7-8</td>
+                <td></td>
+                <td>Dumbbell Bench Press
+                    <img src="images/lower_body_1/Dumbbell Bench Press.png" alt="Dumbbell Bench Press">
+                </td>
+                <td>Machine Chest Press
+                    <img src="images/lower_body_1/Machine Chest Press.png" alt="Machine Chest Press">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Lat Pulldown</span>
+                    <img src="images/lower_body_1/Lat Pulldown.png" alt="Lat Pulldown">
+                </td>
+                <td>3</td>
+                <td>8-10</td>
+                 <td data-rest="2-3">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>7-8</td>
+                <td>8-9</td>
+                <td></td>
+                <td>Pull-Up (Assisted/BW)
+                    <img src="images/lower_body_1/Pull-Up.png" alt="Pull-Up">
+                </td>
+                <td>Machine Pulldown</td>
+            </tr>
+            <tr>
+                 <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Seated Cable Row</span>
+                    <img src="images/lower_body_1/Seated Cable Row.png" alt="Seated Cable Row">
+               </td>
+                <td>3</td>
+                <td>10-12</td>
+                <td data-rest="2-3">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>7-8</td>
+                <td>8-9</td>
+                <td>Lengthened Partials</td>
+                <td>Chest-Supported Row
+                    <img src="images/lower_body_1/Chest-Supported.png" alt="Chest-Supported Row">
+                </td>
+                <td>Dumbbell Row
+                    <img src="images/lower_body_1/Dumbbell Row.png" alt="Dumbbell Row">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Dumbbell Lateral Raise</span>
+                    <img src="images/lower_body_1/Dumbbell Lateral Raise.png" alt="Dumbbell Lateral Raise">
+                </td>
+                <td>3</td>
+                <td>12-15</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td>Drop Set</td>
+                <td>Cable Lateral Raise
+                    <img src="images/lower_body_1/Cable Lateral Raise.png" alt="Cable Lateral Raise">
+                </td>
+                <td>Machine Lateral Raise
+                    <img src="images/lower_body_1/Machine Lateral Raise.png" alt="Machine Lateral Raise">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">EZ-Bar Curl</span>
+                    <img src="images/lower_body_1/EZ-Bar Curl.png" alt="EZ-Bar Curl">
+                </td>
+                <td>3</td>
+                <td>8-10</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td></td>
+                <td>Dumbbell Curl
+                    <img src="images/lower_body_1/Dumbbell Curl.png" alt="Dumbbell Curl">
+                </td>
+                <td>Cable Curl
+                    <img src="images/lower_body_1/Cable Curl.png" alt="Cable Curl">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Overhead Triceps Extension</span>
+                    <img src="images/lower_body_1/Overhead Triceps Extension.png" alt="Overhead Triceps Extension">
+                </td>
+                <td>3</td>
+                <td>10-12</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td></td>
+                <td>Skull Crusher
+                    <img src="images/lower_body_1/Skull Crusher.png" alt="Skull Crusher">
+                </td>
+                <td>Dumbbell Overhead Ext.
+                    <img src="images/lower_body_1/Dumbbell Overhead Ext.png" alt="Dumbbell Overhead Ext">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Thứ 4: Lower Body 1</h2>
+     <table>
+        <thead>
+            <tr>
+                 <th>✓</th> <!-- Header for checkbox -->
+                 <th>Bài tập (với mô tả hình ảnh)</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Nghỉ (phút)</th>
+                <th>RPE Set đầu</th>
+                <th>RPE Set cuối</th>
+                <th>Kỹ thuật set cuối</th>
+                <th>Bài tập thay thế 1</th>
+                <th>Bài tập thay thế 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Barbell Back Squat</span>
+                    <img src="images/lower_body_1/Barbell Back Squat.png" alt="Barbell Back Squat">
+                </td>
+                <td>3</td>
+                <td>6-8</td>
+                <td data-rest="3-5">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>6-7</td>
+                <td>7-8</td>
+                <td></td>
+                <td>
+                    Leg Press
+                    <img src="images/lower_body_1/Leg Press.png" alt="Leg Press">
+                </td>
+                <td>
+                    Hack Squat
+                    <img src="images/lower_body_1/Hack Squat.png" alt="Hack Squat">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Romanian Deadlift (RDL)</span>
+                    <img src="images/lower_body_1/Romanian Deadlift.png" alt="Romanian Deadlift">
+                </td>
+                <td>3</td>
+                <td>8-10</td>
+                <td data-rest="2-3">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>7-8</td>
+                <td>8-9</td>
+                <td></td>
+                <td>
+                    Good Morning
+                    <img src="images/lower_body_1/Good Morning.png" alt="Good Morning">
+                </td>
+                <td>
+                    45-Deg Back Extension
+                    <img src="images/lower_body_1/Back Extension.png" alt="45-Deg Back Extension">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Leg Extension</span>
+                    <img src="images/lower_body_1/Leg Extension.png" alt="Leg Extension">
+                </td>
+                <td>3</td>
+                <td>10-12</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td>Lengthened Partials</td>
+                <td>
+                    Goblet Squat
+                    <img src="images/lower_body_1/Goblet Squat.png" alt="Goblet Squat">
+                </td>
+                <td>
+                    Lunge
+                    <img src="images/lower_body_1/BARBELL LUNGE.png" alt="Lunge">
+                </td>
+            </tr>
+             <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Seated Leg Curl</span>
+                    <img src="images/lower_body_1/Seated Leg Curl.png" alt="Seated Leg Curl">
+                </td>
+                <td>3</td>
+                <td>12-15</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td>Lengthened Partials</td>
+                <td>
+                    Lying Leg Curl
+                    <img src="images/lower_body_1/Lying_Leg_Curl.png" alt="Lying Leg Curl">
+                </td>
+                <td>
+                    Glute-Ham Raise
+                    <img src="images/lower_body_1/Glute-Ham Raise.png" alt="Glute-Ham Raise">
+                </td>
+            </tr>
+             <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Standing Calf Raise</span>
+                    <img src="images/lower_body_1/Standing Calf Raise.png" alt="Standing Calf Raise">
+                </td>
+                <td>4</td>
+                <td>10-15</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td></td>
+                <td>Leg Press Calf Raise
+                    <img src="images/lower_body_1/Leg Press Calf Raise.png" alt="Leg Press Calf Raise">
+                </td>
+                <td>Seated Calf Raise
+                    <img src="images/lower_body_1/Seated Calf Raise.png" alt="Seated Calf Raise">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+     <h2>Thứ 7: Upper Body 2</h2>
+     <table>
+        <thead>
+            <tr>
+                 <th>✓</th> <!-- Header for checkbox -->
+                 <th>Bài tập (với mô tả hình ảnh)</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Nghỉ (phút)</th>
+                <th>RPE Set đầu</th>
+                <th>RPE Set cuối</th>
+                <th>Kỹ thuật set cuối</th>
+                <th>Bài tập thay thế 1</th>
+                <th>Bài tập thay thế 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Barbell Overhead Press</span>
+                    <img src="images/lower_body_1/Barbell Overhead Press.png" alt="Barbell Overhead Press">
+               </td>
+                <td>3</td>
+                <td>6-8</td>
+                <td data-rest="3-5">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>6-7</td>
+                <td>7-8</td>
+                <td></td>
+                <td>Dumbbell Shoulder Press
+                    <img src="images/lower_body_1/Dumbbell Shoulder Press.png" alt="Dumbbell Shoulder Press">
+                </td>
+                <td>Machine Shoulder Press
+                    <img src="images/lower_body_1/Machine Shoulder Press.png" alt="Machine Shoulder Press">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Pull-Up (Assisted/BW)</span>
+                    <img src="images/lower_body_1/Pull-Up.png" alt="Pull-Up">
+                </td>
+                <td>3</td>
+                <td>8-10</td>
+                <td data-rest="2-3">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>7-8</td>
+                <td>8-9</td>
+                <td></td>
+                <td>Lat Pulldown
+                    <img src="images/lower_body_1/Lat Pulldown.png" alt="Lat Pulldown">
+                </td>
+                <td>Machine Pulldown</td>
+            </tr>
+             <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Dumbbell Bench Press</span>
+                    <img src="images/lower_body_1/Dumbbell Bench Press.png" alt="Dumbbell Bench Press">
+                </td>
+                <td>3</td>
+                <td>10-12</td>
+                <td data-rest="2-3">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>7-8</td>
+                <td>8-9</td>
+                <td>Drop Set</td>
+                <td>Incline Dumbbell Press
+                    <img src="images/lower_body_1/Incline Dumbbell Press.png" alt="Incline Dumbbell Press">
+                </td>
+                <td>Machine Chest Press
+                    <img src="images/lower_body_1/Machine Chest Press.png" alt="Machine Chest Press">
+                </td>
+            </tr>
+             <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Dumbbell Row</span>
+                    <img src="images/lower_body_1/Dumbbell Row.png" alt="Dumbbell Row">
+                </td>
+                <td>3</td>
+                <td>12-15</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td>Cheat Reps</td>
+                <td>Seated Cable Row
+                    <img src="images/lower_body_1/Seated Cable Row.png" alt="Seated Cable Row">
+                </td>
+                <td>Machine Row</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Dumbbell Hammer Curl</span>
+                    <img src="images/lower_body_1/Dumbbell Hammer Curl.png" alt="Dumbbell Hammer Curl">
+                </td>
+                <td>3</td>
+                <td>8-10</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td></td>
+                <td>Cable Hammer Curl
+                    <img src="images/lower_body_1/Cable Hammer Curl.png" alt="Cable Hammer Curl">
+                </td>
+                <td>Reverse Curl
+                    <img src="images/lower_body_1/Reverse Curl.png" alt="Reverse Curl">
+                </td>
+            </tr>
+             <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Triceps Pressdown</span>
+                     <img src="images/lower_body_1/Triceps Pressdown.png" alt="Triceps Pressdown">
+                </td>
+                <td>3</td>
+                <td>10-12</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td>Drop Set</td>
+                <td>Cable Overhead Ext.
+                    <img src="images/lower_body_1/Cable Overhead Extension.png" alt="Cable Overhead Ext.">
+                </td>
+                <td>Dip (Assisted/BW)
+                    <img src="images/lower_body_1/Dip.png" alt="Dip">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+     <h2>Chủ Nhật: Lower Body 2</h2>
+     <table>
+        <thead>
+            <tr>
+                <th>✓</th> <!-- Header for checkbox -->
+                <th>Bài tập (với mô tả hình ảnh)</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Nghỉ (phút)</th>
+                <th>RPE Set đầu</th>
+                <th>RPE Set cuối</th>
+                <th>Kỹ thuật set cuối</th>
+                <th>Bài tập thay thế 1</th>
+                <th>Bài tập thay thế 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Deadlift (Conventional or Sumo)</span>
+                    <img src="images/lower_body_1/SUMO.png" alt="Deadlift">
+                </td>
+                <td>1</td>
+                <td>4-6</td>
+                <td data-rest="3-5">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>7-8</td>
+                <td>7-8</td>
+                <td></td>
+                <td>Hip Thrust
+                    <img src="images/lower_body_1/Hip Thrust.png" alt="Hip Thrust">
+                </td>
+                <td>RDL
+                    <img src="images/lower_body_1/Romanian Deadlift.png" alt="Romanian Deadlift">
+                </td>
+            </tr>
+             <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Leg Press</span>
+                    <img src="images/lower_body_1/Leg Press.png" alt="Leg Press">
+                </td>
+                <td>3</td>
+                <td>10-12</td>
+                <td data-rest="2-3">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>7-8</td>
+                <td>8-9</td>
+                <td></td>
+                <td>Hack Squat
+                    <img src="images/lower_body_1/Hack Squat.png" alt="Hack Squat">
+                </td>
+                <td>Barbell Front Squat
+                    <img src="images/lower_body_1/Barbell Front Squat.png" alt="Barbell Front Squat">
+                </td>
+            </tr>
+             <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Lying Leg Curl</span>
+                    <img src="images/lower_body_1/Lying_Leg_Curl.png" alt="Lying Leg Curl">
+                </td>
+                <td>3</td>
+                <td>12-15</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td>Myo-Reps</td>
+                <td>Seated Leg Curl
+                    <img src="images/lower_body_1/Seated Leg Curl.png" alt="Seated Leg Curl">
+                </td>
+                <td>
+                    Glute-Ham Raise
+                    <img src="images/lower_body_1/Glute-Ham Raise.png" alt="Glute-Ham Raise">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Seated Calf Raise</span>
+                    <img src="images/lower_body_1/Seated Calf Raise.png" alt="Seated Calf Raise">
+                </td>
+                <td>4</td>
+                <td>15-20</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td></td>
+                <td>
+                    Standing Calf Raise
+                    <img src="images/lower_body_1/Standing Calf Raise.png" alt="Standing Calf Raise">
+                </td>
+                <td>Leg Press Calf Raise
+                    <img src="images/lower_body_1/Leg Press Calf Raise.png" alt="Leg Press Calf Raise">
+                </td>
+            </tr>
+             <tr>
+                <td><input type="checkbox" class="row-toggle"></td> <!-- Checkbox added -->
+                <td>
+                    <span class="exercise-name">Cable Crunch</span>
+                    <img src="images/lower_body_1/Cable Crunch.png" alt="Cable Crunch">
+                </td>
+                <td>3</td>
+                <td>10-15</td>
+                <td data-rest="1-2">
+                    <div class="timer-container">
+                        <button class="timer-button">Bắt đầu nghỉ</button>
+                        <span class="timer-display"></span>
+                        <span class="click-count-display"></span>
+                    </div>
+                </td>
+                <td>8-9</td>
+                <td>9-10</td>
+                <td></td>
+                <td>Hanging Leg Raise
+                    <img src="images/lower_body_1/Hanging Leg Raise.png" alt="Hanging Leg Raise">
+                </td>
+                <td>Decline Sit-Up
+                     <img src="images/lower_body_1/Decline Sit-Up.png" alt="Decline Sit-Up">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><em>Lưu ý: Đây là cấu trúc lịch tập dựa trên Program 7 trong sách. Các mô tả hình ảnh chỉ là placeholder. Vui lòng tham khảo Chương 4 của PDF để xem hướng dẫn kỹ thuật và hình ảnh minh họa thực tế cho từng bài tập. Bạn có thể thay thế các bài tập bằng các lựa chọn thay thế được đề xuất trong bảng này nếu cần.</em></p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const timerContainers = document.querySelectorAll('.timer-container');
+            const activeTimers = {}; // Object to store active intervals
+
+            // --- Timer Logic ---
+            timerContainers.forEach(container => {
+                const button = container.querySelector('.timer-button');
+                const display = container.querySelector('.timer-display');
+                const countDisplay = container.querySelector('.click-count-display');
+                const cell = container.closest('td'); // Timer cell
+                const restString = cell.dataset.rest;
+
+                if (!restString || !button || !display || !countDisplay) {
+                    console.warn('Skipping timer setup for a row due to missing elements or data-rest attribute.');
+                    if(button) button.disabled = true;
+                    return;
+                }
+
+                let clickCount = 0;
+                countDisplay.textContent = `Lần nghỉ: ${clickCount}`;
+
+                const restMinutes = parseInt(restString.split('-')[0], 10);
+
+                if (isNaN(restMinutes) || restMinutes <= 0) {
+                    console.warn(`Invalid rest time "${restString}" found. Skipping timer setup.`);
+                    button.disabled = true;
+                    button.textContent = 'Lỗi giờ';
+                    countDisplay.textContent = '';
+                    return;
+                }
+
+                const restSeconds = restMinutes * 60;
+                const initialButtonText = `Nghỉ ${restMinutes}:00`;
+                button.textContent = initialButtonText;
+
+                button.addEventListener('click', () => {
+                    const timerKey = cell; // Use timer cell as unique key
+
+                    // Check if the row is disabled by the checkbox
+                    const parentRow = cell.closest('tr');
+                    if (parentRow && parentRow.classList.contains('row-disabled')) {
+                        return; // Do nothing if row is disabled
+                    }
+
+                    clickCount++;
+                    countDisplay.textContent = `Lần nghỉ: ${clickCount}`;
+
+                    if (activeTimers[timerKey]) {
+                        clearInterval(activeTimers[timerKey]);
+                    }
+
+                    let duration = restSeconds;
+                    button.disabled = true;
+                    display.textContent = ''; // Clear previous timer display
+
+                    const updateTimerDisplay = () => {
+                        const minutes = Math.floor(duration / 60);
+                        const seconds = duration % 60;
+                        display.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                    };
+
+                    updateTimerDisplay();
+
+                    activeTimers[timerKey] = setInterval(() => {
+                        duration--;
+                        updateTimerDisplay();
+
+                        if (duration < 0) {
+                            clearInterval(activeTimers[timerKey]);
+                            delete activeTimers[timerKey];
+                            display.textContent = "Hết giờ!";
+                            // Only re-enable if the row isn't disabled by checkbox
+                            if (!parentRow || !parentRow.classList.contains('row-disabled')) {
+                                button.disabled = false;
+                            }
+                            button.textContent = initialButtonText;
+                            // Optional: Play sound
+                        }
+                    }, 1000);
+                });
+            });
+
+            // --- Checkbox Logic ---
+            const rowCheckboxes = document.querySelectorAll('.row-toggle');
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', (event) => {
+                    const cb = event.target;
+                    const row = cb.closest('tr');
+                    if (!row) return;
+
+                    const timerContainer = row.querySelector('.timer-container');
+                    const timerButton = timerContainer ? timerContainer.querySelector('.timer-button') : null;
+                    const timerDisplay = timerContainer ? timerContainer.querySelector('.timer-display') : null;
+                    const timerCell = timerContainer ? timerContainer.closest('td') : null; // Timer cell key
+
+                    if (cb.checked) {
+                        row.classList.add('row-disabled');
+                        if (timerButton) {
+                            timerButton.disabled = true; // Disable the button
+                        }
+                        // If a timer is running for this row, stop it
+                        if (timerCell && activeTimers[timerCell]) {
+                            clearInterval(activeTimers[timerCell]);
+                            delete activeTimers[timerCell];
+                            if (timerDisplay) timerDisplay.textContent = ''; // Clear timer display
+
+                            // Reset button text if applicable
+                            const restString = timerCell.dataset.rest;
+                            const restMinutes = parseInt(restString?.split('-')[0], 10);
+                             if (timerButton && !isNaN(restMinutes) && restMinutes > 0) {
+                                 timerButton.textContent = `Nghỉ ${restMinutes}:00`;
+                             }
+                        }
+                    } else {
+                        row.classList.remove('row-disabled');
+                        // Only enable the button if it exists and isn't supposed to be disabled by an active timer
+                        // (which it shouldn't be, as we clear timers above, but this is safer)
+                        if (timerButton && !(timerCell && activeTimers[timerCell])) {
+                             timerButton.disabled = false;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
