@@ -78,7 +78,7 @@
         /* Log Input */
         .log-input-container { display: flex; flex-direction: column; gap: 0.25rem; /* gap-1 */ }
         .log-input { border: 1px solid #cbd5e0; /* border-gray-400 */ padding: 0.25rem 0.5rem; /* px-2 py-1 */ border-radius: 0.25rem; /* rounded */ font-size: 0.875rem; /* text-sm */ width: 100%; }
-        /* NEW: Style for the log display span */
+        /* Style for the log display span */
         .log-display {
             font-size: 0.75rem; /* text-xs */
             color: #718096; /* text-gray-600 */
@@ -97,6 +97,12 @@
         tr.row-disabled .click-count-display { color: #a0aec0; /* gray-500 */ text-decoration: line-through; }
         tr.row-disabled .log-input { background-color: #e2e8f0; /* gray-300 */ border-color: #a0aec0; /* gray-500 */ cursor: not-allowed; }
         tr.row-disabled .log-display { color: #a0aec0; /* gray-500 */ text-decoration: line-through; } /* Style disabled display */
+        /* Style for Reset Button when row is disabled */
+        tr.row-disabled .reset-row-button {
+             opacity: 0.6; /* Make it slightly faded */
+             cursor: pointer; /* Still allow clicking to reset */
+             /* Keep background red to indicate reset function */
+        }
 
         /* Image Placeholder */
         .image-placeholder { font-style: italic; color: #a0aec0; /* gray-500 */ font-size: 0.75rem; /* text-xs */ margin-top: 0.25rem; /* mt-1 */ }
@@ -104,7 +110,7 @@
         td img { max-height: 150px; /* Smaller images in table */ margin-top: 0.5rem; /* mt-2 */ }
 
         /* Column Widths (Approximate) */
-        th:nth-child(1), td:nth-child(1) { width: 4%; text-align: center; vertical-align: middle;} /* Checkbox */
+        th:nth-child(1), td:nth-child(1) { width: 4%; text-align: center; vertical-align: middle;} /* Checkbox & Reset */
         th:nth-child(2), td:nth-child(2) { width: 20%; } /* Exercise */
         th:nth-child(3), td:nth-child(3) { width: 5%; }  /* Sets */
         th:nth-child(4), td:nth-child(4) { width: 5%; }  /* Reps */
@@ -112,9 +118,42 @@
         th:nth-child(6), td:nth-child(6) { width: 7%; }  /* RPE Start */
         th:nth-child(7), td:nth-child(7) { width: 7%; }  /* RPE End */
         th:nth-child(8), td:nth-child(8) { width: 10%; } /* Technique */
-        th:nth-child(9), td:nth-child(9) { width: 12%; } /* Log Input - NEW */
+        th:nth-child(9), td:nth-child(9) { width: 12%; } /* Log Input */
         th:nth-child(10), td:nth-child(10) { width: 10%; } /* Alt 1 */
         th:nth-child(11), td:nth-child(11) { width: 10%; } /* Alt 2 */
+
+        /* Styles for Checkbox + Reset Button Container */
+        .checkbox-reset-container {
+            display: flex;
+            flex-direction: column; /* Stack checkbox and button vertically */
+            align-items: center;    /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            gap: 0.35rem; /* Add small space between checkbox and button */
+            height: 100%; /* Try to fill cell height */
+        }
+
+        /* Styles for the Reset Button */
+        .reset-row-button {
+            background-color: #f56565; /* bg-red-500 */
+            color: white;
+            border: none;
+            padding: 0.2rem 0.4rem; /* Smaller padding */
+            border-radius: 0.25rem; /* rounded */
+            font-size: 0.65rem; /* text-xs, maybe even smaller */
+            line-height: 1; /* Adjust line height */
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            margin-top: 0.1rem; /* Small top margin */
+        }
+        .reset-row-button:hover:not(:disabled) {
+            background-color: #e53e3e; /* hover:bg-red-600 */
+        }
+
+        /* Adjust first column alignment */
+        th:nth-child(1), td:nth-child(1) {
+            vertical-align: middle; /* Ensure vertical centering */
+            text-align: center;
+        }
 
         /* --- End Tailwind Simulation --- */
     </style>
@@ -150,15 +189,19 @@
                             <th>RPE Đầu</th>
                             <th>RPE Cuối</th>
                             <th>Kỹ thuật</th>
-                            <th>Ghi Chú (Tạ x Reps)</th> <!-- Feature 3 -->
+                            <th>Ghi Chú (Tạ x Reps)</th>
                             <th>Thay thế 1</th>
                             <th>Thay thế 2</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Add data-exercise-id="tue-0", "tue-1", etc. to each TR -->
                         <tr data-exercise-id="tue-0">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Barbell Overhead Press</span>
                                 <img src="images/lower_body_1/Barbell Overhead Press.png" alt="Barbell Overhead Press">
@@ -178,14 +221,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 50kg x 8, 7, 6">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Dumbbell Shoulder Press <img src="images/lower_body_1/Dumbbell Shoulder Press.png" alt="Dumbbell Shoulder Press"></td>
                             <td>Machine Shoulder Press <img src="images/lower_body_1/Machine Shoulder Press.png" alt="Machine Shoulder Press"></td>
                         </tr>
                         <tr data-exercise-id="tue-1">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Pull-Up (Assisted/BW)</span>
                                 <img src="images/lower_body_1/Pull-Up.png" alt="Pull-Up">
@@ -205,14 +253,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: BW x 10, 9, 8">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Lat Pulldown <img src="images/lower_body_1/Lat Pulldown.png" alt="Lat Pulldown"></td>
                             <td>Machine Pulldown</td>
                         </tr>
                          <tr data-exercise-id="tue-2">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Dumbbell Bench Press</span>
                                 <img src="images/lower_body_1/Dumbbell Bench Press.png" alt="Dumbbell Bench Press">
@@ -232,14 +285,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 20kg x 12, 11, 10">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Incline Dumbbell Press <img src="images/lower_body_1/Incline Dumbbell Press.png" alt="Incline Dumbbell Press"></td>
                             <td>Machine Chest Press <img src="images/lower_body_1/Machine Chest Press.png" alt="Machine Chest Press"></td>
                         </tr>
                          <tr data-exercise-id="tue-3">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Dumbbell Row</span>
                                 <img src="images/lower_body_1/Dumbbell Row.png" alt="Dumbbell Row">
@@ -259,14 +317,19 @@
                              <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 25kg x 15, 14, 12">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                              </td>
                             <td>Seated Cable Row <img src="images/lower_body_1/Seated Cable Row.png" alt="Seated Cable Row"></td>
                             <td>Machine Row</td>
                         </tr>
                         <tr data-exercise-id="tue-4">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Dumbbell Hammer Curl</span>
                                 <img src="images/lower_body_1/Dumbbell Hammer Curl.png" alt="Dumbbell Hammer Curl">
@@ -286,14 +349,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 12kg x 10, 9, 8">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Cable Hammer Curl <img src="images/lower_body_1/Cable Hammer Curl.png" alt="Cable Hammer Curl"></td>
                             <td>Reverse Curl <img src="images/lower_body_1/Reverse Curl.png" alt="Reverse Curl"></td>
                         </tr>
                          <tr data-exercise-id="tue-5">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Triceps Pressdown</span>
                                  <img src="images/lower_body_1/Triceps Pressdown.png" alt="Triceps Pressdown">
@@ -313,7 +381,7 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 30kg x 12, 11, 10">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Cable Overhead Ext. <img src="images/lower_body_1/Overhead Triceps Extension.png" alt="Cable Overhead Ext."></td>
@@ -344,7 +412,12 @@
                     </thead>
                     <tbody>
                         <tr data-exercise-id="wed-0">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Barbell Back Squat</span>
                                 <img src="images/lower_body_1/Barbell Back Squat.png" alt="Barbell Back Squat">
@@ -364,14 +437,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 100kg x 8, 7, 6">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Leg Press <img src="images/lower_body_1/Leg Press.png" alt="Leg Press"></td>
                             <td>Hack Squat <img src="images/lower_body_1/Hack Squat.png" alt="Hack Squat"></td>
                         </tr>
                         <tr data-exercise-id="wed-1">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Romanian Deadlift (RDL)</span>
                                 <img src="images/lower_body_1/Romanian Deadlift.png" alt="Romanian Deadlift">
@@ -391,14 +469,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 80kg x 10, 9, 9">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Good Morning <img src="images/lower_body_1/Good Morning.png" alt="Good Morning"></td>
                             <td>45-Deg Back Extension <img src="images/lower_body_1/Back Extension.png" alt="45-Deg Back Extension"></td>
                         </tr>
                         <tr data-exercise-id="wed-2">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Leg Extension</span>
                                 <img src="images/lower_body_1/Leg Extension.png" alt="Leg Extension">
@@ -418,14 +501,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 40kg x 12, 11, 10">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Goblet Squat <img src="images/lower_body_1/Goblet Squat.png" alt="Goblet Squat"></td>
                             <td>Lunge <img src="images/lower_body_1/BARBELL LUNGE.png" alt="Lunge"></td>
                         </tr>
                          <tr data-exercise-id="wed-3">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Seated Leg Curl</span>
                                 <img src="images/lower_body_1/Seated Leg Curl.png" alt="Seated Leg Curl">
@@ -445,14 +533,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 35kg x 15, 14, 13">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Lying Leg Curl <img src="images/lower_body_1/Lying_Leg_Curl.png" alt="Lying Leg Curl"></td>
                             <td>Glute-Ham Raise <img src="images/lower_body_1/Glute-Ham Raise.png" alt="Glute-Ham Raise"></td>
                         </tr>
                          <tr data-exercise-id="wed-4">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Standing Calf Raise</span>
                                 <img src="images/lower_body_1/Standing Calf Raise.png" alt="Standing Calf Raise">
@@ -472,7 +565,7 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 60kg x 15, 14, 13, 12">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Leg Press Calf Raise <img src="images/lower_body_1/Leg Press Calf Raise.png" alt="Leg Press Calf Raise"></td>
@@ -503,7 +596,12 @@
                     </thead>
                     <tbody>
                         <tr data-exercise-id="sat-0">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Bench Press (Barbell)</span>
                                 <img src="images/lower_body_1/Bench Press.png" alt="Barbell Bench Press">
@@ -523,14 +621,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 80kg x 8, 7, 6">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Dumbbell Bench Press <img src="images/lower_body_1/Dumbbell Bench Press.png" alt="Dumbbell Bench Press"></td>
                             <td>Machine Chest Press <img src="images/lower_body_1/Machine Chest Press.png" alt="Machine Chest Press"></td>
                         </tr>
                         <tr data-exercise-id="sat-1">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Lat Pulldown</span>
                                 <img src="images/lower_body_1/Lat Pulldown.png" alt="Lat Pulldown">
@@ -550,14 +653,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 60kg x 10, 9, 9">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Pull-Up (Assisted/BW) <img src="images/lower_body_1/Pull-Up.png" alt="Pull-Up"></td>
                             <td>Machine Pulldown</td>
                         </tr>
                         <tr data-exercise-id="sat-2">
-                             <td><input type="checkbox" class="row-toggle"></td>
+                             <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Seated Cable Row</span>
                                 <img src="images/lower_body_1/Seated Cable Row.png" alt="Seated Cable Row">
@@ -577,14 +685,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 55kg x 12, 11, 10">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Chest-Supported Row <img src="images/lower_body_1/Chest-Supported.png" alt="Chest-Supported Row"></td>
                             <td>Dumbbell Row <img src="images/lower_body_1/Dumbbell Row.png" alt="Dumbbell Row"></td>
                         </tr>
                         <tr data-exercise-id="sat-3">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Dumbbell Lateral Raise</span>
                                 <img src="images/lower_body_1/Dumbbell Lateral Raise.png" alt="Dumbbell Lateral Raise">
@@ -604,14 +717,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 8kg x 15, 14, 12">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Cable Lateral Raise <img src="images/lower_body_1/Cable Lateral Raise.png" alt="Cable Lateral Raise"></td>
                             <td>Machine Lateral Raise <img src="images/lower_body_1/Machine Lateral Raise.png" alt="Machine Lateral Raise"></td>
                         </tr>
                         <tr data-exercise-id="sat-4">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">EZ-Bar Curl</span>
                                 <img src="images/lower_body_1/EZ-Bar Curl.png" alt="EZ-Bar Curl">
@@ -631,14 +749,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 25kg x 10, 9, 8">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Dumbbell Curl <img src="images/lower_body_1/Dumbbell Curl.png" alt="Dumbbell Curl"></td>
                             <td>Cable Curl <img src="images/lower_body_1/Cable Curl.png" alt="Cable Curl"></td>
                         </tr>
                         <tr data-exercise-id="sat-5">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Overhead Triceps Extension</span>
                                 <img src="images/lower_body_1/Overhead Triceps Extension.png" alt="Overhead Triceps Extension">
@@ -658,7 +781,7 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 20kg x 12, 11, 10">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Skull Crusher <img src="images/lower_body_1/Skull Crusher.png" alt="Skull Crusher"></td>
@@ -689,7 +812,12 @@
                     </thead>
                     <tbody>
                         <tr data-exercise-id="sun-0">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Deadlift (Conventional or Sumo)</span>
                                 <img src="images/lower_body_1/SUMO.png" alt="Deadlift">
@@ -709,14 +837,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 120kg x 5">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Hip Thrust <img src="images/lower_body_1/Hip Thrust.png" alt="Hip Thrust"></td>
                             <td>RDL <img src="images/lower_body_1/Romanian Deadlift.png" alt="Romanian Deadlift"></td>
                         </tr>
                          <tr data-exercise-id="sun-1">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Leg Press</span>
                                 <img src="images/lower_body_1/Leg Press.png" alt="Leg Press">
@@ -736,14 +869,19 @@
                              <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 150kg x 12, 11, 10">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                              </td>
                             <td>Hack Squat <img src="images/lower_body_1/Hack Squat.png" alt="Hack Squat"></td>
                             <td>Barbell Front Squat <img src="images/lower_body_1/Barbell Front Squat.png" alt="Barbell Front Squat"></td>
                         </tr>
                          <tr data-exercise-id="sun-2">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Lying Leg Curl</span>
                                 <img src="images/lower_body_1/Lying_Leg_Curl.png" alt="Lying Leg Curl">
@@ -763,14 +901,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 30kg x 15, 14, 13">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Seated Leg Curl <img src="images/lower_body_1/Seated Leg Curl.png" alt="Seated Leg Curl"></td>
                             <td>Glute-Ham Raise <img src="images/lower_body_1/Glute-Ham Raise.png" alt="Glute-Ham Raise"></td>
                         </tr>
                         <tr data-exercise-id="sun-3">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Seated Calf Raise</span>
                                 <img src="images/lower_body_1/Seated Calf Raise.png" alt="Seated Calf Raise">
@@ -790,14 +933,19 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 40kg x 20, 18, 17, 15">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Standing Calf Raise <img src="images/lower_body_1/Standing Calf Raise.png" alt="Standing Calf Raise"></td>
                             <td>Leg Press Calf Raise <img src="images/lower_body_1/Leg Press Calf Raise.png" alt="Leg Press Calf Raise"></td>
                         </tr>
                          <tr data-exercise-id="sun-4">
-                            <td><input type="checkbox" class="row-toggle"></td>
+                            <td>
+                                <div class="checkbox-reset-container">
+                                    <input type="checkbox" class="row-toggle">
+                                    <button class="reset-row-button" title="Reset hàng này">Reset</button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="exercise-name">Cable Crunch</span>
                                 <img src="images/lower_body_1/Cable Crunch.png" alt="Cable Crunch">
@@ -817,7 +965,7 @@
                             <td>
                                 <div class="log-input-container">
                                     <input type="text" class="log-input" placeholder="VD: 35kg x 15, 14, 12">
-                                    <span class="log-display"></span> <!-- Added Span -->
+                                    <span class="log-display"></span> <!-- Display Span -->
                                 </div>
                             </td>
                             <td>Hanging Leg Raise <img src="images/lower_body_1/Hanging Leg Raise.png" alt="Hanging Leg Raise"></td>
@@ -906,7 +1054,7 @@
             setActiveTab(savedActiveTab || 'tue'); // Default to Tuesday if nothing saved
 
 
-            // --- Timer, Checkbox, Log Input Logic ---
+            // --- Timer, Checkbox, Log Input, Reset Button Logic ---
             document.querySelectorAll('tbody tr').forEach((row, index) => {
                 const exerciseId = row.dataset.exerciseId; // e.g., "tue-0", "wed-1"
                 if (!exerciseId) {
@@ -916,9 +1064,10 @@
 
                 const timerContainer = row.querySelector('.timer-container');
                 const checkbox = row.querySelector('.row-toggle');
-                const logInputContainer = row.querySelector('.log-input-container'); // Get container
-                const logInput = logInputContainer ? logInputContainer.querySelector('.log-input') : null; // Feature 3
-                const logDisplay = logInputContainer ? logInputContainer.querySelector('.log-display') : null; // Get the new span
+                const logInputContainer = row.querySelector('.log-input-container');
+                const logInput = logInputContainer ? logInputContainer.querySelector('.log-input') : null;
+                const logDisplay = logInputContainer ? logInputContainer.querySelector('.log-display') : null;
+                const resetButton = row.querySelector('.reset-row-button'); // Select the reset button
 
                 // --- Timer Setup ---
                 if (timerContainer) {
@@ -988,9 +1137,9 @@
                                 }, 1000);
                             });
                         } else {
-                            button.disabled = true;
-                            button.textContent = 'Lỗi giờ';
-                            countDisplay.textContent = '';
+                            if(button) button.disabled = true;
+                            if(button) button.textContent = 'Lỗi giờ';
+                            if(countDisplay) countDisplay.textContent = '';
                         }
                     } else {
                          if(button) button.disabled = true;
@@ -1012,7 +1161,7 @@
                         if (isChecked) {
                             row.classList.add('row-disabled');
                             if (timerButton) timerButton.disabled = true;
-                            if (logInput) logInput.disabled = true; // Feature 3
+                            if (logInput) logInput.disabled = true;
 
                             // Stop running timer for this row
                             if (activeTimers[timerKey]) {
@@ -1032,7 +1181,7 @@
                             if (timerButton && !activeTimers[timerKey]) {
                                 timerButton.disabled = false;
                             }
-                            if (logInput) logInput.disabled = false; // Feature 3
+                            if (logInput) logInput.disabled = false;
                         }
                         // Save checkbox state (Feature 1)
                         localStorage.setItem(checkboxKey, isChecked);
@@ -1046,7 +1195,7 @@
                     }
                 }
 
-                // --- Log Input & Display Setup (Feature 3 & 1 & 8 & NEW) ---
+                // --- Log Input & Display Setup ---
                 if (logInput && logDisplay) { // Check if both input and display span exist
                     const logKey = `log-${exerciseId}`; // Key for current session log
                     const savedLog = localStorage.getItem(logKey);
@@ -1056,7 +1205,7 @@
                         logInput.value = savedLog;
                     }
 
-                    // Initial display in the span (NEW)
+                    // Initial display in the span
                     logDisplay.textContent = logInput.value;
 
                     // Disable if row is initially loaded as checked
@@ -1066,7 +1215,7 @@
 
                     logInput.addEventListener('input', (event) => {
                         const currentValue = event.target.value;
-                        // Update the display span (NEW)
+                        // Update the display span
                         logDisplay.textContent = currentValue;
                         // Save to current session log (Feature 1)
                         localStorage.setItem(logKey, currentValue);
@@ -1074,8 +1223,38 @@
                         saveExerciseLog(exerciseId, currentValue);
                     });
                 } else if (logInputContainer) {
-                    // Handle case where only container exists but not input/display (less likely)
                     console.warn("Missing log input or display span within container for:", exerciseId);
+                }
+
+                // --- Reset Button Logic ---
+                if (resetButton && checkbox) { // Ensure button and checkbox exist
+                    const timerKey = exerciseId; // Use the same key as timer/checkbox
+
+                    resetButton.addEventListener('click', () => {
+                        // 1. Uncheck the checkbox
+                        checkbox.checked = false;
+
+                        // 2. Trigger the checkbox's 'change' event
+                        checkbox.dispatchEvent(new Event('change'));
+
+                        // 3. Reset the click count (Lần nghỉ)
+                        const countDisplay = timerContainer ? timerContainer.querySelector('.click-count-display') : null;
+                        if (countDisplay) {
+                            timerClickCounts[timerKey] = 0; // Reset in-memory count
+                            countDisplay.textContent = 'Lần nghỉ: 0'; // Update display
+                            localStorage.removeItem(`count-${timerKey}`); // Remove from storage
+                        }
+
+                        // Optional: Reset log input and display
+                        // if (logInput) {
+                        //     logInput.value = '';
+                        //     localStorage.removeItem(`log-${timerKey}`);
+                        //     if (logDisplay) {
+                        //         logDisplay.textContent = '';
+                        //     }
+                        //     saveExerciseLog(exerciseId, '');
+                        // }
+                    });
                 }
 
             }); // End loop through table rows
