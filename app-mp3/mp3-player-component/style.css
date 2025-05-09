@@ -1,0 +1,233 @@
+/* Enhanced styles for the MP3 player component */
+
+:root {
+    --primary-dark-purple: #4a148c;
+    --primary-purple: #7b1fa2;
+    --secondary-purple: #9c27b0;
+    --light-purple-text: #e1bee7;
+    --border-purple: #ab47bc;
+    --highlight-purple: #e040fb;
+    --muted-purple: #ce93d8;
+    --darker-purple-hover: #8e24aa;
+}
+
+.mp3-player-container.anime-theme {
+    background: linear-gradient(135deg, var(--primary-dark-purple) 0%, var(--primary-purple) 50%, var(--secondary-purple) 100%); /* Enhanced purple gradient background */
+    color: var(--light-purple-text); /* Light purple text for contrast */
+    border: 2px solid var(--border-purple); /* Matching purple border */
+    box-shadow: 0 0 20px rgba(171, 71, 188, 0.5), 0 10px 20px rgba(0, 0, 0, 0.2); /* Soft purple glow effect with depth */
+    font-family: 'Arial', sans-serif; /* Example font, could be more anime-like */
+    border-radius: 1rem; /* Rounded corners for the container */
+    max-width: 90vw; /* Limit width for better responsiveness */
+    max-height: 90vh; /* Set max height to 90vh */
+    overflow-y: auto; /* Enable scrolling within the container */
+    margin: 5vh auto; /* Center the player with margin */
+}
+
+/* Track Info Styles */
+.mp3-player-container .track-info .track-title {
+    color: var(--highlight-purple); /* Highlight color for title */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem; /* Larger title for better visibility */
+    font-weight: bold;
+}
+
+.mp3-player-container .track-info .artist-name {
+    color: var(--muted-purple); /* Slightly muted purple color for artist */
+    font-size: 1rem; /* Slightly smaller artist name */
+}
+
+/* Controls Styles */
+.mp3-player-container .controls .control-button {
+    background-color: var(--border-purple); /* Button background */
+    color: #fff; /* Button icon color */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    border-radius: 50%; /* Circular buttons */
+    width: 40px; /* Fixed width for consistent sizing */
+    height: 40px; /* Fixed height for consistent sizing */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.mp3-player-container .controls .control-button:hover {
+    background-color: var(--darker-purple-hover); /* Darker purple hover effect */
+    transform: scale(1.1); /* Slightly larger on hover */
+}
+
+.mp3-player-container .controls .control-button:active {
+    transform: scale(0.95); /* Slightly smaller on click */
+}
+
+/* Progress Bar Styles */
+.mp3-player-container .progress-container {
+    background-color: var(--muted-purple); /* Progress bar background */
+    border-radius: 1rem; /* Rounded corners */
+    height: 8px; /* Thicker progress bar */
+    cursor: pointer;
+}
+
+.mp3-player-container .progress-bar {
+    background-color: var(--highlight-purple); /* Progress bar fill color */
+    border-radius: 1rem; /* Rounded corners */
+    height: 100%; /* Fill the container */
+    transition: width 0.1s linear; /* Smooth transition for progress updates */
+}
+
+/* Time Info Styles */
+.mp3-player-container .time-info {
+    color: var(--muted-purple); /* Time display color */
+    font-size: 0.8rem; /* Smaller time display */
+    font-weight: bold;
+}
+
+/* Playlist Styles */
+.mp3-player-container .playlist-container h3 {
+    color: var(--highlight-purple); /* Playlist title color */
+    margin-bottom: 0.5rem; /* Space below title */
+    font-size: 1.2rem; /* Larger title for playlist */
+}
+
+.mp3-player-container .playlist-list {
+    color: var(--light-purple-text); /* Playlist item color */
+    list-style-type: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+}
+
+.mp3-player-container .playlist-list li {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--primary-purple); /* Subtle separator line */
+    transition: background-color 0.3s ease;
+}
+
+.mp3-player-container .playlist-list li:hover {
+    background-color: rgba(171, 71, 188, 0.2); /* Subtle background on hover */
+    color: var(--highlight-purple); /* Highlight color for hover */
+}
+
+.mp3-player-container .playlist-list li.highlighted-track {
+    background-color: var(--primary-purple); /* Darker background for highlighted track */
+    color: #fff; /* White text for highlighted track */
+    font-weight: bold;
+}
+
+/* Scrollbar styling for Webkit browsers (Chrome, Safari) */
+.playlist-list::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.playlist-list::-webkit-scrollbar-track {
+    background: var(--muted-purple); /* Track color */
+    border-radius: 10px;
+}
+
+.playlist-list::-webkit-scrollbar-thumb {
+    background: var(--border-purple); /* Thumb color */
+    border-radius: 10px;
+}
+
+.playlist-list::-webkit-scrollbar-thumb:hover {
+    background: var(--darker-purple-hover); /* Thumb color on hover */
+}
+
+/* Scrollbar styling for Firefox */
+.playlist-list {
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: var(--border-purple) var(--muted-purple); /* thumb color track color */
+}
+
+/* Styles for the Lyrics Display Area */
+.mp3-player-container .lyrics-container {
+    border: 1px solid var(--border-purple); /* Border matching the theme */
+    color: var(--light-purple-text); /* Light purple text */
+    background-color: var(--primary-dark-purple); /* Dark purple background */
+    padding: 1rem; /* Add some padding */
+    border-radius: 0.5rem; /* Rounded corners */
+    max-height: 200px; /* Set a max height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    white-space: pre-wrap; /* Preserve whitespace and wrap text */
+    margin-top: 1rem; /* Space above the lyrics container */
+    width: 100%; /* Make it full width */
+    box-shadow: inset 0 0 10px rgba(171, 71, 188, 0.3); /* Inner glow effect */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+.mp3-player-container .lyrics-container .highlight {
+    color: var(--highlight-purple); /* Highlight color for current lyric */
+    font-weight: bold; /* Bold text for highlight */
+    background-color: rgba(171, 71, 188, 0.2); /* Subtle background for highlight */
+}
+
+.mp3-player-container .lyrics-container:hover {
+    box-shadow: inset 0 0 15px rgba(171, 71, 188, 0.6); /* Enhanced inner glow on hover */
+}
+
+/* Scrollbar styling for Webkit browsers (Chrome, Safari) for lyrics container */
+.lyrics-container::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.lyrics-container::-webkit-scrollbar-track {
+    background: var(--muted-purple); /* Track color */
+    border-radius: 10px;
+}
+
+.lyrics-container::-webkit-scrollbar-thumb {
+    background: var(--border-purple); /* Thumb color */
+    border-radius: 10px;
+}
+
+.lyrics-container::-webkit-scrollbar-thumb:hover {
+    background: var(--darker-purple-hover); /* Thumb color on hover */
+}
+
+/* Scrollbar styling for Firefox for lyrics container */
+.lyrics-container {
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: var(--border-purple) var(--muted-purple); /* thumb color track color */
+}
+
+/* Segment Controls Styles */
+.mp3-player-container .segment-controls input[type="text"] {
+    border: 1px solid var(--border-purple); /* Border color matching the theme */
+    color: var(--light-purple-text); /* Light purple text */
+    background-color: var(--primary-dark-purple); /* Dark purple background */
+    padding: 0.5rem; /* Add some padding */
+    border-radius: 0.25rem; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+.mp3-player-container .segment-controls input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(171, 71, 188, 0.5); /* Focus ring */
+}
+
+.mp3-player-container .segment-controls label {
+    color: var(--highlight-purple); /* Highlight color for labels */
+    font-weight: bold;
+    margin-bottom: 0.25rem; /* Space between label and input */
+}
+
+.mp3-player-container .segment-controls .segment-play-button {
+    background-color: var(--border-purple); /* Button background */
+    color: #fff; /* Button text color */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    border: none; /* Remove default border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    border-radius: 0.25rem; /* Rounded corners */
+    padding: 0.5rem 1rem; /* Add padding for better touch target */
+    font-weight: bold; /* Bold text for better visibility */
+}
+
+.mp3-player-container .segment-controls .segment-play-button:hover {
+    background-color: var(--darker-purple-hover); /* Darker purple hover effect */
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.mp3-player-container .segment-controls .segment-play-button:active {
+    transform: translateY(0); /* Reset position on click */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Reduced shadow on active state */
+}
